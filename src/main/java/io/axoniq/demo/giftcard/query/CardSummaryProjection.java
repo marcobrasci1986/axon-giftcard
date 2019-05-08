@@ -3,7 +3,9 @@ package io.axoniq.demo.giftcard.query;
 import io.axoniq.demo.giftcard.api.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.XSlf4j;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.eventhandling.ResetHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.axonframework.queryhandling.QueryUpdateEmitter;
 import org.springframework.context.annotation.Profile;
@@ -21,6 +23,7 @@ import java.util.List;
 @XSlf4j
 @RequiredArgsConstructor
 @Profile("query")
+@ProcessingGroup("myProcessor")
 public class CardSummaryProjection {
 
     private final EntityManager entityManager;
@@ -83,6 +86,12 @@ public class CardSummaryProjection {
         TypedQuery<Long> jpaQuery = entityManager.createNamedQuery("CardSummary.count", Long.class);
         jpaQuery.setParameter("idStartsWith", query.getFilter().getIdStartsWith());
         return log.exit(new CountCardSummariesResponse(jpaQuery.getSingleResult().intValue(), Instant.now().toEpochMilli()));
+    }
+
+    @ResetHandler
+    public void onReset() {
+        System.out.println("Resetting CardSummaryProjection");
+        // toto delete projection
     }
 
 }

@@ -62,14 +62,6 @@
 				</exclusion>
 			</exclusions>
 			<version>${axon.version}</version>
-<!--
-			<exclusions>
-				<exclusion>
-					<groupId>org.axonframework</groupId>
-					<artifactId>axon-server-connector</artifactId>
-				</exclusion>
-			</exclusions>
--->
 		</dependency>
 
 		<!-- Vanilla Spring Boot to start with -->
