@@ -37,13 +37,13 @@
     <dependencyManagement>
 
         <dependencies>
-            <dependency>
-                <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-bom</artifactId>
-                <version>${vaadin.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+            <!--<dependency>-->
+            <!--<groupId>com.vaadin</groupId>-->
+            <!--<artifactId>vaadin-bom</artifactId>-->
+            <!--<version>${vaadin.version}</version>-->
+            <!--<type>pom</type>-->
+            <!--<scope>import</scope>-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -58,6 +58,11 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- Axon -->
         <dependency>
             <groupId>org.axonframework</groupId>
@@ -71,11 +76,6 @@
             <version>${axon.version}</version>
         </dependency>
 
-        <!-- Vanilla Spring Boot to start with -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
 
         <!-- Spring Boot with JPA -->
         <dependency>
@@ -108,14 +108,14 @@
         </dependency>
 
         <!-- Vaadin -->
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-push</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.vaadin</groupId>-->
+        <!--<artifactId>vaadin-spring-boot-starter</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>com.vaadin</groupId>-->
+        <!--<artifactId>vaadin-push</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -123,15 +123,15 @@
             <version>${lombok.version}</version>
         </dependency>
 
-        <dependency>
-            <!--
-               reactor-core is needed for subscription queries
-               when using Spring Boot 2.0, you'll automatically get reactor-core 3.1, which is fine
-               if you're on Spring Boot 1.5, you would get 2.x, which doesn't work, so you would have to manually set version 3.1
-             -->
-            <groupId>io.projectreactor</groupId>
-            <artifactId>reactor-core</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--&lt;!&ndash;-->
+               <!--reactor-core is needed for subscription queries-->
+               <!--when using Spring Boot 2.0, you'll automatically get reactor-core 3.1, which is fine-->
+               <!--if you're on Spring Boot 1.5, you would get 2.x, which doesn't work, so you would have to manually set version 3.1-->
+             <!--&ndash;&gt;-->
+            <!--<groupId>io.projectreactor</groupId>-->
+            <!--<artifactId>reactor-core</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -139,24 +139,24 @@
         </dependency>
 
         <!-- For Spring-boot, since Java 9-->
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.axonframework</groupId>
-            <artifactId>axon-micrometer</artifactId>
-            <version>4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-actuator</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.glassfish.jaxb</groupId>-->
+        <!--<artifactId>jaxb-runtime</artifactId>-->
+        <!--<version>2.3.1</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.axonframework</groupId>-->
+        <!--<artifactId>axon-micrometer</artifactId>-->
+        <!--<version>4.1</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-actuator</artifactId>-->
+        <!--</dependency>-->
 
         <!--Rabbit MQ-->
         <dependency>
@@ -164,6 +164,7 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
+        <!--Spring Cloud Stream-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream</artifactId>
@@ -178,7 +179,6 @@
             <artifactId>spring-cloud-stream-test-support</artifactId>
             <scope>test</scope>
         </dependency>
-
 
 
         <!-- Jackson -->
