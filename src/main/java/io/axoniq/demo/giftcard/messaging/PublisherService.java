@@ -1,22 +1,28 @@
 package io.axoniq.demo.giftcard.messaging;
 
 import io.axoniq.demo.giftcard.GcApp;
+import io.axoniq.demo.giftcard.messaging.model.PersonCreatedEvent;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.XSlf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
+@XSlf4j
 public class PublisherService {
+    public static final String ROUTING_KEY = "foo.bar.baz";
     private final RabbitTemplate rabbitTemplate;
-    private final ReceiverService receiver;
-
 
     @Scheduled(fixedDelay = 3000L)
-    public void run() {
-        System.out.println("Sending message ...");
-        rabbitTemplate.convertAndSend(GcApp.topicExchangeName, "foo.bar.baz", "Hello from RabbitMQ");
+    public void sendScheduledMessage() {
+        log.info("Sending Message to exchange {} with routingKey {}", GcApp.topicExchangeName, ROUTING_KEY);
+        rabbitTemplate.convertAndSend(GcApp.topicExchangeName, ROUTING_KEY,
+                PersonCreatedEvent.builder().id(UUID.randomUUID()).firstname("John").lastname("Doe").build()
+        );
 
 
     }
