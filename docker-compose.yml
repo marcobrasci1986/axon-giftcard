@@ -8,3 +8,9 @@ services:
       - POSTGRES_USER=sa
       - POSTGRES_PASSWORD=
       - POSTGRES_DB=db_for_eventstore
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+
