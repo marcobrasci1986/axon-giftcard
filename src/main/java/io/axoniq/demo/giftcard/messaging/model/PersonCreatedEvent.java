@@ -6,14 +6,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 @Builder
 @ToString
 // Getters are necessary -> Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class
 @Getter
-public class PersonCreatedEvent implements Serializable {
+public class PersonCreatedEvent {
     private UUID id;
     private String firstname;
     private String lastname;

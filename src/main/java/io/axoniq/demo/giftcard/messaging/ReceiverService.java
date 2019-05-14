@@ -4,7 +4,6 @@ import io.axoniq.demo.giftcard.GcApp;
 import io.axoniq.demo.giftcard.messaging.model.PersonCreatedEvent;
 import lombok.extern.slf4j.XSlf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,9 +11,8 @@ import org.springframework.stereotype.Service;
 public class ReceiverService {
 
     @RabbitListener(queues = GcApp.queueName)
-    public void receiveMessage(final Message<PersonCreatedEvent> message) {
-        log.info("Received message: {}. With headers: {}" + message.getPayload().toString(), message.getHeaders());
-        log.info(message.getPayload().toString());
+    public void receiveMessage(final PersonCreatedEvent personCreatedEvent) {
+        log.info("Received message: {}", personCreatedEvent);
     }
 
 }

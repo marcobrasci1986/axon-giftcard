@@ -19,7 +19,7 @@ public class PublisherService {
 
     @Scheduled(fixedDelay = 3000L)
     public void sendMessage() {
-        log.info("Sending Message to exchange [{}] with routingKey [{}", GcApp.topicExchangeName, ROUTING_KEY);
+        log.info("Sending Message to exchange [{}] with routingKey [{}]", GcApp.topicExchangeName, ROUTING_KEY);
         PersonCreatedEvent personCreatedEvent = PersonCreatedEvent.builder().id(UUID.randomUUID()).firstname("John").lastname("Doe").build();
         rabbitTemplate.convertAndSend(GcApp.topicExchangeName, ROUTING_KEY, personCreatedEvent);
     }
