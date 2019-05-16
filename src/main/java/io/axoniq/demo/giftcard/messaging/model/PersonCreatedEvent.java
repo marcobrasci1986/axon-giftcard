@@ -16,15 +16,19 @@ public class PersonCreatedEvent {
     private UUID id;
     private String firstname;
     private String lastname;
+    private String type;
+
 
     @JsonCreator
     public PersonCreatedEvent(
             @JsonProperty("id") UUID id,
             @JsonProperty("firstname") String firstname,
-            @JsonProperty("lastname") String lastname
+            @JsonProperty("lastname") String lastname,
+            @JsonProperty("_type") String type
     ) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.type = type;
     }
 }

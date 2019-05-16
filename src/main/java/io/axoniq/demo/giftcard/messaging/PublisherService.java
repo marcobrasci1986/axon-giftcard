@@ -1,6 +1,7 @@
 package io.axoniq.demo.giftcard.messaging;
 
 import io.axoniq.demo.giftcard.GcApp;
+import io.axoniq.demo.giftcard.messaging.config.RabbitMqConfiguration;
 import io.axoniq.demo.giftcard.messaging.model.PersonCreatedEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.XSlf4j;
@@ -19,8 +20,9 @@ public class PublisherService {
 
     @Scheduled(fixedDelay = 3000L)
     public void sendMessage() {
-        log.info("Sending Message to exchange [{}] with routingKey [{}]", GcApp.topicExchangeName, ROUTING_KEY);
-        PersonCreatedEvent personCreatedEvent = PersonCreatedEvent.builder().id(UUID.randomUUID()).firstname("John").lastname("Doe").build();
-        rabbitTemplate.convertAndSend(GcApp.topicExchangeName, ROUTING_KEY, personCreatedEvent);
+        log.info("Sending Message to exchange [{}] with routingKey [{}]", RabbitMqConfiguration.topicExchangeName, ROUTING_KEY);
+        PersonCreatedEvent personCreatedEvent
+                = PersonCreatedEvent.builder().id(UUID.randomUUID()).firstname("John").lastname("Doe").type("PersonCreatedEvent").build();
+        rabbitTemplate.convertAndSend(RabbitMqConfiguration.topicExchangeName, ROUTING_KEY, personCreatedEvent);
     }
 }
