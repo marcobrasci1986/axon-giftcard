@@ -19,13 +19,19 @@ data class CancelEvt(val id: String)
         NamedQuery(name = "CardSummary.fetch",
                 query = "SELECT c FROM CardSummary c WHERE c.id LIKE CONCAT(:idStartsWith, '%') ORDER BY c.id"),
         NamedQuery(name = "CardSummary.count",
-                query = "SELECT COUNT(c) FROM CardSummary c WHERE c.id LIKE CONCAT(:idStartsWith, '%')"))
+                query = "SELECT COUNT(c) FROM CardSummary c WHERE c.id LIKE CONCAT(:idStartsWith, '%')"),
+        NamedQuery(name = "CardSummary.delete",
+                query = "Delete FROM CardSummary c")
+)
 data class CardSummary(@Id var id: String, var initialValue: Int, var remainingValue: Int) {
     constructor() : this("", 0, 0)
 }
 
 data class CardSummaryFilter(val idStartsWith: String = "")
-class CountCardSummariesQuery(val filter: CardSummaryFilter = CardSummaryFilter()) { override fun toString() : String = "CountCardSummariesQuery" }
+class CountCardSummariesQuery(val filter: CardSummaryFilter = CardSummaryFilter()) {
+    override fun toString(): String = "CountCardSummariesQuery"
+}
+
 data class CountCardSummariesResponse(val count: Int, val lastEvent: Long)
 data class FetchCardSummariesQuery(val offset: Int, val limit: Int, val filter: CardSummaryFilter)
 

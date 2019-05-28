@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @XSlf4j
 @Component
-@ProcessingGroup("myProcessor2")
+@ProcessingGroup("PersonProcessor")
 public class PersonProjection {
 
     @EventHandler

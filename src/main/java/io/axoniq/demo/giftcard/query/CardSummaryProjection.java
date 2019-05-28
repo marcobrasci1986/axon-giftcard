@@ -23,14 +23,16 @@ import java.util.List;
 @XSlf4j
 @RequiredArgsConstructor
 @Profile("query")
-@ProcessingGroup("myProcessor")
+@ProcessingGroup(CardSummaryProjection.CARD_SUMMARY_PROCESSOR)
 public class CardSummaryProjection {
 
+    public static final String CARD_SUMMARY_PROCESSOR = "CardSummaryProcessor";
     private final EntityManager entityManager;
     private final QueryUpdateEmitter queryUpdateEmitter;
 
     @EventHandler
     public void on(IssuedEvt event) {
+        // TODO insert data in different db
         log.trace("projecting {}", event);
         /*
          * Update our read model by inserting the new card. This is done so that upcoming regular
@@ -90,8 +92,8 @@ public class CardSummaryProjection {
 
     @ResetHandler
     public void onReset() {
-        System.out.println("Resetting CardSummaryProjection");
-        // toto delete projection
+        log.info("Resetting CardSummaryProjection");
+        entityManager.createNamedQuery("CardSummary.delete").executeUpdate();
     }
 
 }

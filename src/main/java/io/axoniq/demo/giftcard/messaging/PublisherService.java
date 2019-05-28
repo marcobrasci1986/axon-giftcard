@@ -1,6 +1,5 @@
 package io.axoniq.demo.giftcard.messaging;
 
-import io.axoniq.demo.giftcard.GcApp;
 import io.axoniq.demo.giftcard.messaging.config.RabbitMqConfiguration;
 import io.axoniq.demo.giftcard.messaging.model.PersonCreatedEvent;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,7 @@ public class PublisherService {
     public static final String ROUTING_KEY = "foo.bar.baz";
     private final RabbitTemplate rabbitTemplate;
 
-    @Scheduled(fixedDelay = 3000L)
+//    @Scheduled(fixedDelay = 3000L)
     public void sendMessage() {
         log.info("Sending Message to exchange [{}] with routingKey [{}]", RabbitMqConfiguration.topicExchangeName, ROUTING_KEY);
         PersonCreatedEvent personCreatedEvent

@@ -8,17 +8,15 @@ import lombok.ToString;
 
 import java.util.UUID;
 
-@Builder
 @ToString
 // Getters are necessary -> Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class
 @Getter
-public class PersonCreatedEvent {
+public class PersonCreatedEvent extends BaseEvent {
     private UUID id;
     private String firstname;
     private String lastname;
-    private String type;
 
-
+    @Builder
     @JsonCreator
     public PersonCreatedEvent(
             @JsonProperty("id") UUID id,
@@ -26,9 +24,9 @@ public class PersonCreatedEvent {
             @JsonProperty("lastname") String lastname,
             @JsonProperty("_type") String type
     ) {
+        super(type);
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.type = type;
     }
 }
